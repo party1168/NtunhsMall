@@ -11,6 +11,11 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "img.daisyui.com",
                 pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "www.victorsport.com.tw",
+                pathname: "/**",
             }
         ]
     },
