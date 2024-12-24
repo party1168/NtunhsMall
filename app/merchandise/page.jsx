@@ -1,13 +1,57 @@
 "use client"
 import { Lens } from "../components/ui/lens";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Box, Button, TextField, Typography, List, ListItem, Avatar } from "@mui/material";
+import { toast, Toaster } from "react-hot-toast";
 export default function Merchandise() {
   const [hovering, setHovering] = useState(false);
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      setItems(JSON.parse(cart));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(items));
+  }, [items]);
+  const handleAddToCart = () => {
+
+    const newItem = {
+      id: 1,
+      name: "神通 ARS-HS PLUS C",
+      price: 8000,
+      quantity: 1,
+      image: "https://www.victorsport.com.tw/files/zh_tw/product/more/107409_0_20231128165241.jpg"
+    };
+    const updatedItems = [...items];
+    const existingItemIndex = updatedItems.findIndex(item => item.id === newItem.id);
+    if (existingItemIndex !== -1) {
+      updatedItems[existingItemIndex] = {
+        ...updatedItems[existingItemIndex],
+        quantity: updatedItems[existingItemIndex].quantity + 1
+      }
+    } else {
+      updatedItems.push(newItem);
+    }
+    setItems(updatedItems);
+    toast.success('已加入購物車!', {
+      style: {
+        border: '1px solid #713200',
+        padding: '16px',
+        color: '#713200',
+      },
+      iconTheme: {
+        primary: '#713200',
+        secondary: '#FFFAEE',
+      },
+    });
+  };
   return (
     <div className="min-h-screen bg-base-100">
+      <Toaster position="bottom-right" />
       <div className="place-items-center min-w-full min-h-screen">
         <div className="breadcrumbs text-sm">
           <ul>
@@ -45,7 +89,7 @@ export default function Merchandise() {
               <br />
               結合小拍面帶來俐落打感，引領神速新世代。</p>
             <p className="text-2xl font-bold text-primary">定價： 8000</p>
-            <button className="p-[3px] relative max-w-fit mt-4">
+            <button onClick={() => { handleAddToCart(); }} className="p-[3px] relative max-w-fit mt-4">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
               <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
                 加入購物車
