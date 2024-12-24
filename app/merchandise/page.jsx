@@ -4,16 +4,16 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Box, Button, TextField, Typography, List, ListItem, Avatar } from "@mui/material";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 export default function Merchandise() {
   const [hovering, setHovering] = useState(false);
-  const [items, setItems] = useState([]);
-  useEffect(() => {
-    const cart = localStorage.getItem("cart");
-    if (cart) {
-      setItems(JSON.parse(cart));
+  const [items, setItems] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem("cart");
+      return saved ? JSON.parse(saved) : [];
     }
-  }, []);
+    return [];
+  });
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(items));
   }, [items]);
@@ -51,7 +51,6 @@ export default function Merchandise() {
   };
   return (
     <div className="min-h-screen bg-base-100">
-      <Toaster position="bottom-right" />
       <div className="place-items-center min-w-full min-h-screen">
         <div className="breadcrumbs text-sm">
           <ul>
@@ -68,7 +67,7 @@ export default function Merchandise() {
             <Lens hovering={hovering} setHovering={setHovering}>
               <Image
                 src="https://www.victorsport.com.tw/files/zh_tw/product/more/107409_0_20231128165241.jpg"
-                alt="image"
+                alt="神通 ARS-HS PLUS C"
                 width={500}
                 height={300}
                 className="rounded-2xl"

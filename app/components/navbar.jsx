@@ -1,12 +1,15 @@
+"use client";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 function Navbar() {
+    const [items, setItems] = useState([]);
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl" href="/">Ntunhs Mall</a>
+                <Link className="btn btn-ghost text-xl" href="/">Ntunhs Mall</Link>
             </div>
             <div className="flex-none">
-                <div className="dropdown dropdown-end">
+                <Link href={`/cart`}>
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                         <div className="indicator">
                             <svg
@@ -21,23 +24,9 @@ function Navbar() {
                                     strokeWidth="2"
                                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
-                            <span className="badge badge-sm indicator-item"></span>
                         </div>
                     </div>
-                    <div
-                        tabIndex={0}
-                        className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
-                        <div className="card-body">
-                            <span className="text-lg font-bold">物品數量</span>
-                            <span className="text-info">總金額: </span>
-                            <div className="card-actions">
-                                <Link href="/cart">
-                                    <button className="btn btn-primary btn-block">查看購物車</button>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </Link>
             </div>
         </div>
     );
