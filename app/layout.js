@@ -20,6 +20,7 @@ export const metadata = {
   description: "北護商城是一個專為北護師生打造的電商平台，提供多樣化的商品選擇。",
   icon: "/favicon.ico",
   keywords: "北護商城, 北護大學, 商城, 學生商品",
+  metadataBase: new URL('https://ntunhsmall.vercel.app'),
   openGraph: {
     title: 'Ntunhs Mall - 北護商城',
     description: '北護商城是一個專為北護師生打造的電商平台',

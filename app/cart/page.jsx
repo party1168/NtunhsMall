@@ -5,17 +5,22 @@ import { useEffect, useState } from 'react';
 import { FaRegTrashCan } from "react-icons/fa6";
 import { toast } from 'react-hot-toast';
 export default function Cart() {
-    const [items, setItems] = useState(() => {
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        // localStorage 僅在瀏覽器端執行
         const saved = localStorage.getItem("cart");
-        return saved ? JSON.parse(saved) : [];
-    });
+        if (saved) setItems(JSON.parse(saved));
+    }, []);
     const [totalprice, setTotalPrice] = useState(0);
 
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(items));
         if (items.length > 0) {
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('cart', JSON.stringify(items));
+            }
             setTotalPrice(items.reduce((acc, item) => acc + item.price * item.quantity, 0));
-        } else {
+        } else if (items.length === 0 && localStorage.getItem("cart")) {
             setTotalPrice(0);
         }
     }, [items]);
