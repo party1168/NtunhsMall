@@ -5,11 +5,11 @@ export default function Home() {
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <Image
-                    alt="hero image"
+                    alt="神通 ARS-HS PLUS C"
                     className="max-w-sm rounded-lg shadow-2xl"
                     width={500}
                     height={500}
-                    src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp">
+                    src="https://www.victorsport.com.tw/files/zh_tw/product/more/107409_0_20231128165241.jpg">
                 </Image>
                 <div>
                     <div>
