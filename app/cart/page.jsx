@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { FaRegTrashCan } from "react-icons/fa6";
 export default function Cart() {
     const [items, setItems] = useState([
         {
@@ -45,6 +46,9 @@ export default function Cart() {
                             </button>
                         </div>
                         <p className="w-24 text-right">${item.price * item.quantity}</p>
+                        <button className='hover:text-red-500'>
+                            <FaRegTrashCan />
+                        </button>
                     </div>
                 ))}
                 <div className="flex justify-between items-center mt-8">

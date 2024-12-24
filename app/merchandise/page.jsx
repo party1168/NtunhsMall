@@ -3,6 +3,7 @@ import { Lens } from "../components/ui/lens";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import { Box, Button, TextField, Typography, List, ListItem, Avatar } from "@mui/material";
 export default function Merchandise() {
   const [hovering, setHovering] = useState(false);
   return (
@@ -37,9 +38,9 @@ export default function Merchandise() {
                 塞提阿萬指定裝備
               </span>
               升級版的鞭擊增益系统WES 3.0與高抗扭中管，
-              <br/>
+              <br />
               使ARS-HS PLUS連貫平抽更敏捷，
-              <br/>
+              <br />
               進攻下壓角度更尖銳，
               <br />
               結合小拍面帶來俐落打感，引領神速新世代。</p>
@@ -51,6 +52,46 @@ export default function Merchandise() {
               </div>
             </button>
           </div>
+        </div>
+        <div>
+          <Box sx={{ mt: 4, p: 2, borderTop: '1px solid #eee' }}>
+            <Typography variant="h6" gutterBottom>
+              商品評論
+            </Typography>
+
+            {/* Comment Input */}
+            <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+              <TextField
+                fullWidth
+                multiline
+                rows={3}
+                variant="outlined"
+                color="text.red"
+              />
+              <Button
+                variant="contained"
+                sx={{ height: 'fit-content' }}
+              >
+                發布評論
+              </Button>
+            </Box>
+
+            {/* Comments List */}
+            <List>
+              <ListItem sx={{ display: 'flex', gap: 2, mb: 2 }}>
+                <Avatar>U</Avatar>
+                <Box>
+                  <Typography variant="subtitle2">使用者名稱</Typography>
+                  <Typography variant="body2" color="text.white">
+                    這是一個很棒的商品！推薦給大家。
+                  </Typography>
+                  <Typography variant="caption" color="text.white">
+                    2024-03-21
+                  </Typography>
+                </Box>
+              </ListItem>
+            </List>
+          </Box>
         </div>
       </div>
     </div>
